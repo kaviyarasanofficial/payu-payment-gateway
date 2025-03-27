@@ -47,7 +47,7 @@ app.get("/pay", async (req, res) => {
     // Generate Secure Hash
     params["hash"] = generateHash(params, salt);
 
-    console.log("Final Params Sent to PayU:", params); // Debugging
+  
 
     // Render HTML Form for Payment
     res.send(`
@@ -70,7 +70,6 @@ app.get("/pay", async (req, res) => {
 function generateHash(params, salt) {
   const hashString = `${params.key}|${params.txnid}|${params.amount}|${params.productinfo}|${params.firstname}|${params.email}|${params.udf1}|${params.udf2}|${params.udf3}|${params.udf4}|${params.udf5}||||||${salt}`;
   
-  console.log("Hash String Before Encryption:", hashString); // Debugging
 
   return sha512(hashString);
 }
